@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { Mic, MicOff, Calculate } from "@mui/icons-material";
 
-
 const App = () => {
   const [result, setResult] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -83,17 +82,15 @@ const App = () => {
 
   const convertSpokenPunctuation = (expr) => {
     return expr
-
-      .replace(/open/gi, "(")
-      .replace(/close/gi, ")")
-      .replace(/left parenthesis/gi, "(")
-      .replace(/right parenthesis/gi, ")")
+      .replace(/\bopen\b/gi, "(")
+      .replace(/\bclose\b/gi, ")")
       .replace(/plus/gi, "+")
       .replace(/minus/gi, "-")
       .replace(/times/gi, "*")
       .replace(/multiplied by/gi, "*")
       .replace(/divided by/gi, "/")
-      .replace(/equals/gi, "=");
+      .replace(/equals/gi, "=")
+      .replace(/equals to/gi, "=");
   };
 
   const calculateExpression = (expression) => {
@@ -236,17 +233,15 @@ const App = () => {
           justifyContent="space-between"
           mb={3}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
-            Talking Calculator
+          <Typography variant="h5" fontWeight={"bold"} gutterBottom>
+            EWUSCO TALKING CALCULATOR
           </Typography>
           <Calculate fontSize="large" color="primary" />
         </Box>
 
         <Alert severity="info" sx={{ mb: 1 }}>
           <AlertTitle>How to use:</AlertTitle>
-          Say "calculate" followed by your expression or equation.
-          <br />
-          Example: "calculate 2 plus 3" or "calculate x plus 3 equals 5"
+          Example: "2 plus 3" or "calculate x plus 3 equals 5"
         </Alert>
 
         <Button
